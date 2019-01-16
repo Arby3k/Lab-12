@@ -14,5 +14,5 @@ public:
 	void listStudents();
 	std::vector<CStudent> students;
 	
-	bool errorCheck(float grade);
+	bool errorCheck(std::string grade);
 };
