@@ -26,8 +26,9 @@ void CCourse::printMenu() {
 void CCourse::addStudent() {
 	CStudent student;
 	string test;
-	string gradeTest;
+	float grade;
 	int invalid_studentNum = 0;
+	bool validEntry;
 	
 	cout << "Adding a student" << endl;
 	
@@ -45,7 +46,24 @@ void CCourse::addStudent() {
 	} while (invalid_studentNum == 1);
 
 	cout << "Lab Grade: ";
-	cin >> student.m_lab;
+	//cin >> student.m_lab;
+	//cin >> x;
+	//errorCheck(x);
+	do {
+
+		cin >> grade;
+		validEntry = errorCheck(grade);
+		//errorCheck(x);
+		if (validEntry == true) {
+			student.m_lab = grade;
+			grade = 0;
+		}
+		else {
+			cout << "Not Valid Grade\nPlease enter valid Grade:";
+			validEntry = false;
+		}
+	} while (validEntry == false);
+
 	cout << "Quiz Grade: ";
 	cin >> student.m_quiz;
 	cout << "Midterm grade: ";
@@ -116,4 +134,16 @@ void CCourse::listStudents() {
 
 }
 
+bool CCourse::errorCheck(float grade) {
 
+	cout << "CHECKIN DA X" << grade;
+
+	if (grade <= 100 && grade >= 0) {
+		cout << "EZ CLAP";
+		return true;
+	}
+	else {
+		return false;
+		cout << "NO CLAP";
+	}
+}
