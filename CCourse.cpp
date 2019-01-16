@@ -12,16 +12,15 @@ regex studentNum("([Aa]0[0-1][0-9]{6})$");
 
 void CCourse::printMenu() {
 	cout << "**************************************** \n"
-		<< "ELEX4618 Grade System, by STUDENT NUMBER \n"
-		<< "**************************************** \n\n"
-		<< "(A)dd student \n"
-		<< "(E)dit student \n"
-		<< "(P)rint grades \n"
-		<< "(D)elete student \n"
-		<< "(L)ist all students \n"
-		<< "(Q)uit \n"
-		<< "\nCommand:";
-	
+		 << "ELEX4618 Grade System, by STUDENT NUMBER \n"
+		 << "**************************************** \n\n"
+		 << "(A)dd student \n"
+		 << "(E)dit student \n"
+		 << "(P)rint grades \n"
+		 << "(D)elete student \n"
+		 << "(L)ist all students \n"
+		 << "(Q)uit \n"
+		 << "\nCommand:";
 }
 
 void CCourse::addStudent() {
@@ -30,8 +29,8 @@ void CCourse::addStudent() {
 	string gradeTest;
 	int invalid_studentNum = 0;
 	
-
 	cout << "Adding a student" << endl;
+	
 	cout << "Student number: ";
 	do {
 		cin >> test; //student.m_number;
@@ -60,11 +59,26 @@ void CCourse::addStudent() {
 
 void CCourse::editStudent() {
 	int entry = 0;
+	string test;
+	int invalid_studentNum = 0;
+
 	std::cout << "Editing a student" << endl;
 	std::cout << "Which student: ";
 	cin >> entry;
+	
 	cout << "New Student Number: ";
-	cin >> this->students[entry - 1].m_number;
+	do {
+		cin >> test; //student.m_number;
+		if (regex_match(test, studentNum)) {
+			this->students[entry - 1].m_number = test;
+			invalid_studentNum = 0;
+		}
+		else {
+			cout << "Not Valid Student number\nPlease enter valid student number:";
+			invalid_studentNum = 1;
+		}
+	} while (invalid_studentNum == 1);
+
 	cout << "New Lab Grade: ";
 	cin >> this->students[entry - 1].m_lab;
 	cout << "New Quiz Grade: ";
@@ -101,3 +115,5 @@ void CCourse::listStudents() {
 	}
 
 }
+
+
