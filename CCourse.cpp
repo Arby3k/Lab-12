@@ -277,7 +277,12 @@ void CCourse::saveFile() {
 		return ;
 	}
 	for (int i = 0; i < students.size(); i++) {
-		saved << students[i].m_number << "," << students[i].m_lab << "," << students[i].m_quiz << "," << students[i].m_midTerm << "," << students[i].m_final << "," << students[i].m_grade << endl;
+		saved << students[i].m_number  << "," 
+			  << students[i].m_lab     << "," 
+			  << students[i].m_quiz    << "," 
+			  << students[i].m_midTerm << "," 
+			  << students[i].m_final   << "," 
+			  << students[i].m_grade   << endl;
 	}
 	saved.close();
 	return ;
