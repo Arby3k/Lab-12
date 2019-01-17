@@ -7,7 +7,7 @@
 class CCourse {
 	
 public:
-	std::vector<CStudent> students;
+
 	
 	void printMenu();
 	void addStudent();
@@ -19,4 +19,7 @@ public:
 	void loadFile();
 
 	bool errorCheck(std::string grade);
+
+private: 
+	std::vector<CStudent> students;
 };

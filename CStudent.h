@@ -6,8 +6,8 @@
 #include <string>
 
 class CStudent {
-
-	public:
+	friend class CCourse;
+	private:
 		std::string m_number;
 		float m_lab;
 		float m_quiz;
