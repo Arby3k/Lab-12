@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "CStudent.h"
 #include <vector>
+#include <fstream>
 
 class CCourse {
 	

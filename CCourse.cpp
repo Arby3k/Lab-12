@@ -2,13 +2,16 @@
 #include "CCourse.h"
 #include "CStudent.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <iomanip>
 #include <string>
 #include <vector>
 #include <regex>
 
+
 using namespace std;
-regex studentNum("([Aa]0[0-1][0-9]{6})$");
+
 
 void CCourse::printMenu() {
 	cout << "**************************************** \n"
@@ -29,6 +32,8 @@ void CCourse::addStudent() {
 	CStudent student;
 	string testNum;
 	string grade;
+	regex studentNum("([Aa]0[0-1][0-9]{6})$");
+	
 	int invalid_studentNum = 0;
 	bool validEntry;
 	
@@ -126,6 +131,7 @@ void CCourse::editStudent() {
 	string grade;
 	int invalid_studentNum = 0;
 	bool validEntry;
+	regex studentNum("([Aa]0[0-1][0-9]{6})$");
 
 
 	cout << "Editing a student" << endl;
@@ -234,7 +240,7 @@ void CCourse::deleteStudent() {
 
 void CCourse::listStudents() {
 	cout << "The class has: " << this->students.size() << " student(s)\n";
-	std::cout << setw(3) << "" << setw(15) << "Student#:" << setw(10) << "Lab:" << setw(10) << "Quiz:" << setw(12) << "MidTerm:" << setw(15) << "Final Exam:" << setw(15) << "Final Grade:" << std::endl;
+	cout << setw(3) << "" << setw(15) << "Student#:" << setw(10) << "Lab:" << setw(10) << "Quiz:" << setw(12) << "MidTerm:" << setw(15) << "Final Exam:" << setw(15) << "Final Grade:" << std::endl;
 	for (int i = 0; i < this->students.size(); i++) {
 		cout << setw(3) << i + 1;
 		this->students[i].print();
@@ -264,9 +270,55 @@ bool CCourse::errorCheck(string grade) {
 	}
 
 void CCourse::saveFile() {
-	return;
+	
+	ofstream saved("Class Grades.txt");
+	if (!saved) {
+		cout << "Error opening file for output" << endl;
+		return ;
+	}
+	for (int i = 0; i < students.size(); i++) {
+		saved << students[i].m_number << "," << students[i].m_lab << "," << students[i].m_quiz << "," << students[i].m_midTerm << "," << students[i].m_final << "," << students[i].m_grade << endl;
+	}
+	saved.close();
+	return ;
+	
+
 }
 
 void CCourse::loadFile() {
+	CStudent student;
+	string loadedGrade;
+
+	ifstream saved("Class Grades.txt");
+	while (getline(saved, student.m_number, ',')) {
+		getline(saved, loadedGrade, ',');
+		student.m_lab = stof(loadedGrade);
+		
+		getline(saved, loadedGrade, ',');
+		student.m_quiz = stof(loadedGrade);
+		
+		getline(saved, loadedGrade, ',');
+		student.m_midTerm = stof(loadedGrade);
+		
+		getline(saved, loadedGrade, ',');
+		student.m_final = stof(loadedGrade);
+		
+		getline(saved, loadedGrade);
+		student.m_grade = stof(loadedGrade);
+		this->students.push_back(student);
+	}
+	
 	return;
+	
+	/*if (!saved) {
+	cout << "Error opening file to load" << endl;
+	return;
+	}
+	for (int i = 0; i < students.size(); i++) {
+	saved >> students[i].m_number >> "," >> students[i].m_lab >> "," >> students[i].m_quiz >> "," << students[i].m_midTerm >> "," >> students[i].m_final >> "," >> students[i].m_grade >> endl;
+	students.push_back(student);
+	}
+	saved.close();*/
+
 }
+

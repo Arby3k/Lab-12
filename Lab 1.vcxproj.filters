@@ -32,13 +32,13 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Lab 1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CStudent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CCourse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGrading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
