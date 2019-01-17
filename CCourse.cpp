@@ -32,7 +32,7 @@ void CCourse::addStudent() {
 	CStudent student;
 	string testNum;
 	string grade;
-	regex studentNum("([Aa]0[0-1][0-9]{6})$");
+	regex studentNum("([A]0[0-1][0-9]{6})$");
 	
 	int invalid_studentNum = 0;
 	bool validEntry;
@@ -47,7 +47,7 @@ void CCourse::addStudent() {
 			invalid_studentNum = 0;
 		}
 		else {
-			cout << "Not Valid Student number\nPlease enter valid student number:";
+			cout << "Not Valid Student number\nAcceptable Student#  A00123456  or A01234567\nPlease enter valid student number:";
 			invalid_studentNum = 1;
 		}
 	} while (invalid_studentNum == 1);
@@ -131,7 +131,7 @@ void CCourse::editStudent() {
 	string grade;
 	int invalid_studentNum = 0;
 	bool validEntry;
-	regex studentNum("([Aa]0[0-1][0-9]{6})$");
+	regex studentNum("([A]0[0-1][0-9]{6})$");
 
 
 	cout << "Editing a student" << endl;
@@ -146,7 +146,7 @@ void CCourse::editStudent() {
 			invalid_studentNum = 0;
 		}
 		else {
-			cout << "Not Valid Student number\nPlease enter valid student number:";
+			cout << "Not Valid Student number\nAcceptable Student#  A00123456  or A01234567\nPlease enter valid student number:";
 			invalid_studentNum = 1;
 		}
 	} while (invalid_studentNum == 1);
@@ -273,7 +273,7 @@ void CCourse::saveFile() {
 	
 	ofstream saved("Class Grades.txt");
 	if (!saved) {
-		cout << "Error opening file for output" << endl;
+		cout << "Error saving file for output" << endl;
 		return ;
 	}
 	for (int i = 0; i < students.size(); i++) {
@@ -284,6 +284,7 @@ void CCourse::saveFile() {
 			  << students[i].m_final   << "," 
 			  << students[i].m_grade   << endl;
 	}
+	cout << "File Saved\n\n";
 	saved.close();
 	return ;
 }
@@ -295,24 +296,31 @@ void CCourse::loadFile() {
 	this->students.clear();
 
 	ifstream saved("Class Grades.txt");
-	while (getline(saved, student.m_number, ',')) {
-		getline(saved, loadedGrade, ',');
-		student.m_lab = stof(loadedGrade);
-		
-		getline(saved, loadedGrade, ',');
-		student.m_quiz = stof(loadedGrade);
-		
-		getline(saved, loadedGrade, ',');
-		student.m_midTerm = stof(loadedGrade);
-		
-		getline(saved, loadedGrade, ',');
-		student.m_final = stof(loadedGrade);
-		
-		getline(saved, loadedGrade);
-		student.m_grade = stof(loadedGrade);
-		this->students.push_back(student);
+	if (!saved) {
+		cout << "Error saving file for output" << endl;
+		return;
 	}
-	
+	else {
+		while (getline(saved, student.m_number, ',')) {
+			getline(saved, loadedGrade, ',');
+			student.m_lab = stof(loadedGrade);
+
+			getline(saved, loadedGrade, ',');
+			student.m_quiz = stof(loadedGrade);
+
+			getline(saved, loadedGrade, ',');
+			student.m_midTerm = stof(loadedGrade);
+
+			getline(saved, loadedGrade, ',');
+			student.m_final = stof(loadedGrade);
+
+			getline(saved, loadedGrade);
+			student.m_grade = stof(loadedGrade);
+			this->students.push_back(student);
+		}
+		cout << "File Loaded\n\n";
+		saved.close();
+	}
 	return;
 	
 }
