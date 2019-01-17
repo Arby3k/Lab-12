@@ -289,6 +289,8 @@ void CCourse::loadFile() {
 	CStudent student;
 	string loadedGrade;
 
+	this->students.clear();
+
 	ifstream saved("Class Grades.txt");
 	while (getline(saved, student.m_number, ',')) {
 		getline(saved, loadedGrade, ',');
