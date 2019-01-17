@@ -19,4 +19,4 @@ class CStudent {
 };
 ```
 
-Current implimentation of grades that may be tracked.
+Current implementation of grades that may be tracked.
