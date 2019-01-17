@@ -281,8 +281,6 @@ void CCourse::saveFile() {
 	}
 	saved.close();
 	return ;
-	
-
 }
 
 void CCourse::loadFile() {
@@ -312,15 +310,5 @@ void CCourse::loadFile() {
 	
 	return;
 	
-	/*if (!saved) {
-	cout << "Error opening file to load" << endl;
-	return;
-	}
-	for (int i = 0; i < students.size(); i++) {
-	saved >> students[i].m_number >> "," >> students[i].m_lab >> "," >> students[i].m_quiz >> "," << students[i].m_midTerm >> "," >> students[i].m_final >> "," >> students[i].m_grade >> endl;
-	students.push_back(student);
-	}
-	saved.close();*/
-
 }
 
