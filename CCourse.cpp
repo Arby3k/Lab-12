@@ -18,7 +18,9 @@ void CCourse::printMenu() {
 		 << "(E)dit student \n"
 		 << "(P)rint grades \n"
 		 << "(D)elete student \n"
-		 << "(L)ist all students \n"
+		 << "(L)ist all students \n\n"
+		 << "(S)ave to file\n"
+		 << "L(O)ad from file\n\n"
 		 << "(Q)uit \n"
 		 << "\nCommand:";
 }
@@ -47,8 +49,6 @@ void CCourse::addStudent() {
 
 	cout << "Lab Grade: ";
 	//cin >> student.m_lab;
-	//cin >> x;
-	//errorCheck(x);
 	do {
 
 		cin >> grade;
@@ -262,3 +262,11 @@ bool CCourse::errorCheck(string grade) {
 	else
 		return false;
 	}
+
+void CCourse::saveFile() {
+	return;
+}
+
+void CCourse::loadFile() {
+	return;
+}

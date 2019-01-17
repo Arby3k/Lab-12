@@ -6,13 +6,16 @@
 class CCourse {
 	
 public:
+	std::vector<CStudent> students;
+	
 	void printMenu();
 	void addStudent();
 	void editStudent();
 	void printStudent();
 	void deleteStudent();
 	void listStudents();
-	std::vector<CStudent> students;
-	
+	void saveFile();
+	void loadFile();
+
 	bool errorCheck(std::string grade);
 };
