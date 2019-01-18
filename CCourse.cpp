@@ -14,7 +14,7 @@ using namespace std;
 
 
 void CCourse::printMenu() {
-	cout << "**************************************** \n"
+	std::cout << "**************************************** \n"
 		 << "ELEX4618 Grade System, by STUDENT NUMBER \n"
 		 << "**************************************** \n\n"
 		 << "(A)dd student \n"
@@ -41,7 +41,7 @@ void CCourse::addStudent() {
 	
 	cout << "Student number: ";
 	do {
-		cin >> testNum; //student.m_number;
+		cin >> testNum; 
 		if (regex_match(testNum, studentNum)) {
 			student.m_number = testNum;
 			invalid_studentNum = 0;
@@ -53,15 +53,15 @@ void CCourse::addStudent() {
 	} while (invalid_studentNum == 1);
 
 	cout << "Lab Grade: ";
-	//cin >> student.m_lab;
+
 	do {
 
 		cin >> grade;
 		validEntry = errorCheck(grade);
-		//errorCheck(x);
+	
 		if (validEntry == true) {
 			student.m_lab = stof(grade);
-			//grade = 0;
+	
 		}
 		else {
 			cout << "Not Valid Grade\nPlease enter valid Grade:";
@@ -70,15 +70,15 @@ void CCourse::addStudent() {
 	} while (validEntry == false);
 
 	cout << "Quiz Grade: ";
-	//cin >> student.m_quiz;
+
 	do {
 
 		cin >> grade;
 		validEntry = errorCheck(grade);
-		//errorCheck(x);
+
 		if (validEntry == true) {
 			student.m_quiz = stof(grade);
-			//grade = 0;
+	
 		}
 		else {
 			cout << "Not Valid Grade\nPlease enter valid Grade:";
@@ -87,15 +87,15 @@ void CCourse::addStudent() {
 	} while (validEntry == false);
 	
 	cout << "Midterm grade: ";
-	//cin >> student.m_midTerm;
+
 	do {
 
 		cin >> grade;
 		validEntry = errorCheck(grade);
-		//errorCheck(x);
+	
 		if (validEntry == true) {
 			student.m_midTerm = stof(grade);
-			//grade = 0;
+		
 		}
 		else {
 			cout << "Not Valid Grade\nPlease enter valid Grade:";
@@ -104,15 +104,15 @@ void CCourse::addStudent() {
 	} while (validEntry == false);
 	
 	cout << "Final Exam Grade: ";
-	//cin >> student.m_final;
+
 	do {
 
 		cin >> grade;
 		validEntry = errorCheck(grade);
-		//errorCheck(x);
+	
 		if (validEntry == true) {
 			student.m_final = stof(grade);
-			//grade = 0;
+	
 		}
 		else {
 			cout << "Not Valid Grade\nPlease enter valid Grade:";
@@ -140,7 +140,7 @@ void CCourse::editStudent() {
 	
 	cout << "New Student Number: ";
 	do {
-		cin >> test; //student.m_number;
+		cin >> test;
 		if (regex_match(test, studentNum)) {
 			this->students[entry - 1].m_number = test;
 			invalid_studentNum = 0;
@@ -152,15 +152,15 @@ void CCourse::editStudent() {
 	} while (invalid_studentNum == 1);
 
 	cout << "New Lab Grade: ";
-	//cin >> this->students[entry - 1].m_lab;
+	
 	do {
 
 		cin >> grade;
 		validEntry = errorCheck(grade);
-		//errorCheck(x);
+		
 		if (validEntry == true) {
 			this->students[entry - 1].m_lab = stof(grade);
-			//grade = 0;
+		
 		}
 		else {
 			cout << "Not Valid Grade\nPlease enter valid Grade:";
@@ -169,15 +169,15 @@ void CCourse::editStudent() {
 	} while (validEntry == false);
 
 	cout << "New Quiz Grade: ";
-	//cin >> this->students[entry - 1].m_quiz;
+	
 	do {
 
 		cin >> grade;
 		validEntry = errorCheck(grade);
-		//errorCheck(x);
+	
 		if (validEntry == true) {
 			this->students[entry - 1].m_quiz = stof(grade);
-			//grade = 0;
+		
 		}
 		else {
 			cout << "Not Valid Grade\nPlease enter valid Grade:";
@@ -186,15 +186,15 @@ void CCourse::editStudent() {
 	} while (validEntry == false);
 	
 	cout << "New Midterm grade: ";
-	//cin >> this->students[entry - 1].m_midTerm;
+	
 	do {
 
 		cin >> grade;
 		validEntry = errorCheck(grade);
-		//errorCheck(x);
+	
 		if (validEntry == true) {
 			this->students[entry - 1].m_midTerm = stof(grade);
-			//grade = 0;
+	
 		}
 		else {
 			cout << "Not Valid Grade\nPlease enter valid Grade:";
@@ -203,15 +203,15 @@ void CCourse::editStudent() {
 	} while (validEntry == false);
 
 	cout << "New Final Grade: ";
-	//cin >> this->students[entry - 1].m_final;
+	
 	do {
 
 		cin >> grade;
 		validEntry = errorCheck(grade);
-		//errorCheck(x);
+	
 		if (validEntry == true) {
 			this->students[entry - 1].m_final = stof(grade);
-			//grade = 0;
+	
 		}
 		else {
 			cout << "Not Valid Grade\nPlease enter valid Grade:";
@@ -224,18 +224,27 @@ void CCourse::editStudent() {
 
 void CCourse::printStudent() {
 	int entry = 0;
-	std::cout << "Printing" << endl;
-	std::cout << "Which student: ";
+	cout << "Printing" << endl;
+	cout << "Which student: ";
 	cin >> entry;
 	this->students[entry - 1].print();
 }
 
 void CCourse::deleteStudent() {
 	int entry = 0;
-	std::cout << "Deleting" << endl;
-	std::cout << "Which student: ";
-	cin >> entry;
-	this->students.erase(this->students.begin() + entry - 1);
+	int flag = 0;
+	do {
+		cout << "Deleting" << endl;
+		cout << "Which student: ";
+		cin >> entry;
+		if ((entry - 1) > students.size()) {
+			cout << "This student doesnt exist please enter another number\n";
+		}
+		else {
+			this->students.erase(this->students.begin() + entry - 1);
+			flag = 1;
+		}
+	} while (!flag);
 }
 
 void CCourse::listStudents() {
@@ -270,8 +279,13 @@ bool CCourse::errorCheck(string grade) {
 	}
 
 void CCourse::saveFile() {
-	
-	ofstream saved("Class Grades.txt");
+	string fileName;
+	string fileType = ".txt";
+	cout << "\nName Save file\n";
+	cin >> fileName;
+	fileName.append(fileType);
+
+	ofstream saved(fileName);
 	if (!saved) {
 		cout << "Error saving file for output" << endl;
 		return ;
@@ -293,9 +307,16 @@ void CCourse::loadFile() {
 	CStudent student;
 	string loadedGrade;
 
+	string fileName;
+	string fileType = ".txt";
+	cout << "\nName Save file\n";
+	cin >> fileName;
+	fileName.append(fileType);
+
+
 	this->students.clear();
 
-	ifstream saved("Class Grades.txt");
+	ifstream saved(fileName);
 	if (!saved) {
 		cout << "Error saving file for output" << endl;
 		return;
