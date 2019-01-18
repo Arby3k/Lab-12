@@ -14,7 +14,6 @@ class CStudent {
 		float m_midTerm;
 		float m_final;
 		float m_grade;
-
 		void print();
 
 
