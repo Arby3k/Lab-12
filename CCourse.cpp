@@ -237,7 +237,7 @@ void CCourse::deleteStudent() {
 		cout << "Deleting" << endl;
 		cout << "Which student: ";
 		cin >> entry;
-		if ((entry - 1) > students.size()) {
+		if ((entry - 1) >= students.size()) {
 			cout << "This student doesnt exist please enter another number\n";
 		}
 		else {

@@ -1,9 +1,9 @@
 // Lab 1.cpp : Defines the entry point for the console application.
 
 #include "stdafx.h"
-#include "CStudent.h"
+//#include "CStudent.h"
 #include "CCourse.h"
-#include <iostream>
+//#include <iostream>
 #include <iomanip>
 #include <string>
 #include <vector>
