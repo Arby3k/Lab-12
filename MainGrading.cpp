@@ -16,7 +16,7 @@ int main()
 	char inputSelect;
 	string iSelect;
 	int iS;
-	//regex menu("(^[a-zA-Z]$)");
+	//regex menu("(^[a-zA-Z]$)");//
 
 
 	do {
